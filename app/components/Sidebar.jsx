@@ -9,6 +9,7 @@ import { FaChevronDown } from 'react-icons/fa'
 import { BiLogOut } from 'react-icons/bi'
 import { FiSettings } from 'react-icons/fi'
 import { CiUser } from 'react-icons/ci'
+import useLocalStorage from '@/hooks/useLocalStorage'
 
 const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
   const pathname = usePathname()
@@ -16,15 +17,11 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
   const trigger = useRef(null)
   const sidebar = useRef(null)
 
-  const [storedSidebarExpanded, setStoredSidebarExpanded] = useState(
-    localStorage.getItem('sidebar-expanded')
+  const [sidebarExpanded, setSidebarExpanded] = useLocalStorage(
+    'sidebar-expanded',
+    'true'
   )
 
-  const [sidebarExpanded, setSidebarExpanded] = useState(
-    storedSidebarExpanded === null ? false : storedSidebarExpanded === 'true'
-  )
-
-  // close on click outside
   useEffect(() => {
     const clickHandler = ({ target }) => {
       if (!sidebar.current || !trigger.current) return
@@ -40,18 +37,8 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
     return () => document.removeEventListener('click', clickHandler)
   })
 
-  // close if the esc key is pressed
   useEffect(() => {
-    const keyHandler = ({ keyCode }) => {
-      if (!sidebarOpen || keyCode !== 27) return
-      setSidebarOpen(false)
-    }
-    document.addEventListener('keydown', keyHandler)
-    return () => document.removeEventListener('keydown', keyHandler)
-  })
-
-  useEffect(() => {
-    localStorage.setItem('sidebar-expanded', sidebarExpanded.toString())
+    setSidebarExpanded(sidebarExpanded.toString())
     if (sidebarExpanded) {
       document.querySelector('body')?.classList.add('sidebar-expanded')
     } else {
