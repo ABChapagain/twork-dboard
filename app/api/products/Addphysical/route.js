@@ -1,3 +1,5 @@
+
+
 import { NextResponse } from 'next/server'
 
 export async function POST(request) {
@@ -34,7 +36,6 @@ export async function POST(request) {
       productImageGallery: productImages,
     }
 
-    console.log(metaData)
 
     const createProduct = await fetch(
       `${process.env.NEXT_PUBLIC_API_URL}/api/products/physical`,

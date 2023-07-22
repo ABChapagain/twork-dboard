@@ -1,6 +1,9 @@
 'use client';
 import { useRouter } from 'next/navigation';
 import React, { useState, useEffect } from 'react'
+import { ToastContainer, toast } from 'react-toastify';
+
+import 'react-toastify/dist/ReactToastify.css';
 
 function Addproduct() {
     let [showProduct, setShowProduct] = useState(false)
@@ -46,6 +49,29 @@ function Addproduct() {
             [e.target.name]: e.target.value
         })
     }
+    function clearText() {
+        var input = document.querySelectorAll("input")
+        var select = document.querySelectorAll("select")
+        var textarea = document.querySelectorAll("textarea")
+
+        let i
+        for (i = 0; i < input.length; i++) {
+            if (input[i].classList.contains("border-stroke")) {
+                input[i].value = ""
+            }
+        }
+        for (i = 0; i < select.length; i++) {
+            select[i].value = ""
+        }
+        for (i = 0; i < textarea.length; i++) {
+            textarea[i].value = ""
+        }
+        setProductImage("")
+        setProductImages([])
+    }
+    const notify = () => toast("Data Added Successfully.");
+    const error = () => toast("Some Error Occured While Updating.");
+
 
     function saveData(e) {
         e.preventDefault()
@@ -67,13 +93,19 @@ function Addproduct() {
         fetch("/api/products/Addphysical", requestOptions)
             .then(response => response.json())
             .then(result => {
-                console.log(result)
-                router.reload
+                router.refresh()
+                clearText()
+                notify()
+                setShowProduct(false)
 
             })
             .catch(error => {
-                router.reload
+                router.refresh()
+                error()
             });
+
+
+
     }
     var [productImage, setProductImage] = useState("")
     var [productImages, setProductImages] = useState([])
@@ -114,6 +146,7 @@ function Addproduct() {
                     {showProduct ? '-' : '+'}
                 </h3>
             </div>
+            <ToastContainer />
             {(showProduct) && <form >
                 <div className="p-6.5">
                     <div className="mb-4.5 flex flex-col gap-6 xl:flex-row">
