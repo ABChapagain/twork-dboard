@@ -1,10 +1,4 @@
-import BarCharts from './components/BarCharts'
-import Cards from './components/Cards'
-import ChatCard from './components/ChatCard'
-import LineCharts from './components/LineCharts'
-import PieCharts from './components/PieCharts'
-import RegionalCharts from './components/RegionalCharts'
-import TableData from './components/TableData'
+
 
 export default function Home() {
   return (
