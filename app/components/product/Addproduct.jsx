@@ -41,6 +41,7 @@ function Addproduct() {
             })
     }
     useEffect(() => {
+        router.refresh()
         getCategory()
         getsubCategory()
     }, [])
