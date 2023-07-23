@@ -18,7 +18,9 @@ function Addcategory() {
     })
     var [category, setCategory] = useState([])
     function getCategory() {
-        fetch("/api/products/getCategory")
+        fetch("/api/products/getCategory", {
+
+        })
             .then(res => res.json())
             .then(data => {
                 setCategory(data.data)
@@ -92,7 +94,6 @@ function Addcategory() {
                 clearText()
                 notify()
                 setShowProduct(false)
-                console.log(result)
 
             })
             .catch(error => {

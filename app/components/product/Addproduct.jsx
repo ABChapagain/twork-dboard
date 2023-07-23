@@ -23,18 +23,20 @@ function Addproduct() {
     var [subcategory, setsubCategory] = useState([])
 
     function getCategory() {
-        fetch("/api/products/getCategory")
+        fetch("/api/products/getCategory", {
+            cache: "no-store"
+        })
             .then(res => res.json())
             .then(data => {
-                console.log(data)
                 setCategory(data.data)
             })
     }
     function getsubCategory() {
-        fetch("/api/products/getsubCategory")
+        fetch("/api/products/getsubCategory", {
+            cache: "no-store"
+        })
             .then(res => res.json())
             .then(data => {
-                console.log(data)
                 setsubCategory(data.data)
             })
     }
@@ -124,7 +126,6 @@ function Addproduct() {
         setProductImages([...productImages, imageValue])
         productImagex.value = ""
         // addData(e)
-        console.log(productImages)
     }
 
     function deleteImage(data) {
