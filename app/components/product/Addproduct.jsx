@@ -5,7 +5,7 @@ import { ToastContainer, toast } from 'react-toastify';
 
 import 'react-toastify/dist/ReactToastify.css';
 
-function Addproduct() {
+function Addproduct({ categories }) {
     let [showProduct, setShowProduct] = useState(false)
     var router = useRouter()
     let [product, setProduct] = useState({
@@ -23,13 +23,8 @@ function Addproduct() {
     var [subcategory, setsubCategory] = useState([])
 
     function getCategory() {
-        fetch("/api/products/getCategory", {
-            cache: "no-store"
-        })
-            .then(res => res.json())
-            .then(data => {
-                setCategory(data.data)
-            })
+        setCategory(categories)
+
     }
     function getsubCategory() {
         fetch("/api/products/getsubCategory", {

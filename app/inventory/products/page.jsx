@@ -10,18 +10,28 @@ async function getData() {
     })).json()
 }
 
+async function getCategory() {
+    let url = process.env.NEXT_PUBLIC_API_URL
+    return await (await fetch(url + 'api/categories', {
+        cache: 'no-store',
+    })).json()
+}
+
+export const metadata = {
+    title: 'Product | Dashboard',
+    description: 'Manage Products',
+    url: '/inventory',
+}
+
 function page() {
-    const metadata = {
-        title: 'Inventory',
-        description: 'Manage inventory',
-        url: '/inventory',
-    }
+
 
     let products = use(getData())
+    let category = use(getCategory())
 
     return (
         <div>
-            <Addproduct />
+            <Addproduct categories={category} />
             <ProductTable products={products} />
         </div>
     )
