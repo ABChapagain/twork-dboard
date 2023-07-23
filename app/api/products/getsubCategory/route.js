@@ -5,7 +5,8 @@ export async function GET() {
         headers: {
             'Content-Type': 'application/json',
         },
-        cache: 'no-store'
+        cache: 'no-store',
+        revalidate: 10
     })
     const data = await res.json()
 
