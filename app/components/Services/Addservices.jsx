@@ -94,7 +94,7 @@ function Addservices() {
 
     return (
         <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
-            <div className="border-b border-stroke py-4 px-6.5 dark:border-strokedark flex justify-between align-center">
+            <div onClick={() => setShowProduct(!showProduct)} className="border-b border-stroke py-4 px-6.5 dark:border-strokedark flex justify-between align-center">
                 <h3 className="font-medium text-black dark:text-white">
                     Add a Service
                 </h3>

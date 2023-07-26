@@ -49,9 +49,8 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
   return (
     <aside
       ref={sidebar}
-      className={`absolute left-0 top-0 z-9999 flex h-screen w-72.5 flex-col overflow-y-hidden bg-black text-slate-100 duration-300 ease-linear dark:bg-boxdark lg:static lg:translate-x-0 ${
-        sidebarOpen ? 'translate-x-0' : '-translate-x-full'
-      }`}
+      className={`absolute left-0 top-0 z-9999 flex h-screen w-72.5 flex-col overflow-y-hidden bg-black text-slate-100 duration-300 ease-linear dark:bg-boxdark lg:static lg:translate-x-0 ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'
+        }`}
     >
       {/* <!-- SIDEBAR HEADER --> */}
       <div className='flex items-center justify-between gap-2 px-6 py-5.5 lg:py-6.5'>
@@ -85,9 +84,8 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
               <li>
                 <Link
                   href='/'
-                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
-                    pathname === '/' ? 'bg-graydark' : ''
-                  }`}
+                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${pathname === '/' ? 'bg-graydark' : ''
+                    }`}
                 >
                   <RxDashboard className='h-[18px] w-[18px]' />
                   Dashboard
@@ -103,12 +101,11 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                     <React.Fragment>
                       <Link
                         href='#'
-                        className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
-                          pathname === '/inventory' ||
+                        className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${pathname === '/inventory' ||
                           pathname.includes('inventory')
-                            ? 'bg-graydark dark:bg-meta-4'
-                            : ''
-                        }`}
+                          ? 'bg-graydark dark:bg-meta-4'
+                          : ''
+                          }`}
                         onClick={(e) => {
                           e.preventDefault()
                           sidebarExpanded
@@ -119,25 +116,22 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                         <RxDashboard className='h-[18px] w-[18px]' />
                         Inventory
                         <FaChevronDown
-                          className={`w-[16px] h-[16px] absolute right-4 top-1/2 -translate-y-1/2 fill-current ${
-                            open ? 'rotate-180' : 'rotate-0'
-                          }`}
+                          className={`w-[16px] h-[16px] absolute right-4 top-1/2 -translate-y-1/2 fill-current ${open ? 'rotate-180' : 'rotate-0'
+                            }`}
                         />
                       </Link>
                       {/* <!-- Dropdown Menu Start --> */}
                       <div
-                        className={`translate transform overflow-hidden ${
-                          !open && 'hidden'
-                        }`}
+                        className={`translate transform overflow-hidden ${!open && 'hidden'
+                          }`}
                       >
                         <ul className='mt-4 mb-5.5 flex flex-col gap-2.5 pl-6'>
                           <li>
                             <Link
                               href='/inventory/products'
-                              className={`group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ${
-                                pathname === '/inventory/products' &&
+                              className={`group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ${pathname === '/inventory/products' &&
                                 '!text-white'
-                              }`}
+                                }`}
                             >
                               Products
                             </Link>
@@ -145,10 +139,9 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                           <li>
                             <Link
                               href='/inventory/categories'
-                              className={`group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ${
-                                pathname === '/inventory/categories' &&
+                              className={`group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ${pathname === '/inventory/categories' &&
                                 '!text-white'
-                              }`}
+                                }`}
                             >
                               Categories
                             </Link>
@@ -156,12 +149,21 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                           <li>
                             <Link
                               href='/inventory/services'
-                              className={`group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ${
-                                pathname === '/inventory/services' &&
+                              className={`group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ${pathname === '/inventory/services' &&
                                 '!text-white'
-                              }`}
+                                }`}
                             >
                               Services
+                            </Link>
+                          </li>
+                          <li>
+                            <Link
+                              href='/inventory/services/providers'
+                              className={`group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ${pathname === '/inventory/services/providers' &&
+                                '!text-white'
+                                }`}
+                            >
+                              Service Providers
                             </Link>
                           </li>
                         </ul>
@@ -173,9 +175,8 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
               <li>
                 <Link
                   href='/profile'
-                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
-                    pathname === '/profile' ? 'bg-graydark' : ''
-                  }`}
+                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${pathname === '/profile' ? 'bg-graydark' : ''
+                    }`}
                 >
                   <CiUser className='h-[18px] w-[18px]' />
                   Profile
@@ -184,9 +185,8 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
               <li>
                 <Link
                   href='/settings'
-                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
-                    pathname === '/settings' ? 'bg-graydark' : ''
-                  }`}
+                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${pathname === '/settings' ? 'bg-graydark' : ''
+                    }`}
                 >
                   <FiSettings className='h-[18px] w-[18px]' />
                   Settings
@@ -212,10 +212,9 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                     <React.Fragment>
                       <Link
                         href='#'
-                        className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
-                          (pathname === '/auth' || pathname.includes('auth')) &&
+                        className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${(pathname === '/auth' || pathname.includes('auth')) &&
                           'bg-graydark dark:bg-meta-4'
-                        }`}
+                          }`}
                         onClick={(e) => {
                           e.preventDefault()
                           sidebarExpanded
@@ -226,24 +225,21 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                         <BiLogOut className='h-[18px] w-[18px]' />
                         Authentication
                         <FaChevronDown
-                          className={`w-[16px] h-[16px] absolute right-4 top-1/2 -translate-y-1/2 fill-current ${
-                            open ? 'rotate-180' : 'rotate-0'
-                          }`}
+                          className={`w-[16px] h-[16px] absolute right-4 top-1/2 -translate-y-1/2 fill-current ${open ? 'rotate-180' : 'rotate-0'
+                            }`}
                         />
                       </Link>
                       {/* <!-- Dropdown Menu Start --> */}
                       <div
-                        className={`translate transform overflow-hidden ${
-                          !open && 'hidden'
-                        }`}
+                        className={`translate transform overflow-hidden ${!open && 'hidden'
+                          }`}
                       >
                         <ul className='mt-4 mb-5.5 flex flex-col gap-2.5 pl-6'>
                           <li>
                             <Link
                               href='/auth/signin'
-                              className={`group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ${
-                                pathname === '/auth/signin' && '!text-white'
-                              }`}
+                              className={`group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ${pathname === '/auth/signin' && '!text-white'
+                                }`}
                             >
                               Sign In
                             </Link>
@@ -251,9 +247,8 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                           <li>
                             <Link
                               href='/auth/signup'
-                              className={`group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ${
-                                pathname === '/auth/signup' && '!text-white'
-                              }`}
+                              className={`group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ${pathname === '/auth/signup' && '!text-white'
+                                }`}
                             >
                               Sign Up
                             </Link>
