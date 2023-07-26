@@ -4,6 +4,7 @@ import { lazy } from 'react'
 import Theme from '@/context/theme/ThemeProvider'
 
 import { Inter } from 'next/font/google'
+import { ToastContainer } from 'react-toastify'
 const inter = Inter({ subsets: ['latin'] })
 const DefaultLayout = lazy(() => import('./layout/DefaultLayout'))
 
@@ -17,7 +18,21 @@ export default function RootLayout({ children }) {
     <html lang='en'>
       <body className={inter.className}>
         <Theme>
-          <DefaultLayout>{children}</DefaultLayout>
+          <DefaultLayout>
+            <ToastContainer
+              position='top-right'
+              autoClose={5000}
+              hideProgressBar={false}
+              newestOnTop={false}
+              closeOnClick
+              rtl={false}
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
+              theme='light dark:dark'
+            />
+            {children}
+          </DefaultLayout>
         </Theme>
       </body>
     </html>

@@ -18,7 +18,7 @@ async function getCategory() {
 }
 
 export const metadata = {
-    title: 'Product | Dashboard',
+    title: 'Products | Dashboard',
     description: 'Manage Products',
     url: '/inventory',
 }

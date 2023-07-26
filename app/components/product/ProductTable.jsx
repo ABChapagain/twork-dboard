@@ -1,4 +1,6 @@
 'use client'
+import ActionsButton from "./ActionButtons"
+import React from "react"
 
 
 
@@ -10,83 +12,90 @@ const ProductTable = ({ products }) => {
                 Your Products
             </h4>
 
-            <div className='flex flex-col'>
-                <div className='grid grid-cols-3 rounded-sm bg-gray-2 dark:bg-meta-4 sm:grid-cols-5'>
-                    <div className='p-2.5 xl:p-5'>
-                        <h5 className='text-sm font-medium uppercase xsm:text-base'>
-                            Title
-                        </h5>
-                    </div>
 
-                    <div className='p-2.5 text-center xl:p-5'>
-                        <h5 className='text-sm font-medium uppercase xsm:text-base'>
-                            Category
-                        </h5>
-                    </div>
-                    <div className='hidden p-2.5 text-center sm:block xl:p-5'>
-                        <h5 className='text-sm font-medium uppercase xsm:text-base'>
-                            MRP
-                        </h5>
-                    </div>
-                    <div className='hidden p-2.5 text-center sm:block xl:p-5'>
-                        <h5 className='text-sm font-medium uppercase xsm:text-base'>
-                            Description
-                        </h5>
-                    </div>
-                    <div className='p-2.5 text-center xl:p-5'>
-                        <h5 className='text-sm font-medium uppercase xsm:text-base'>
-                            Keywords
-                        </h5>
-                    </div>
-                </div>
-                {products.reverse().map((data) => {
-                    let cat = data.category
-                    if (!!cat)
-                        var len = Object.keys(cat).length;
-                    return (
-                        <div
-                            key={data._id}
-                            className='grid grid-cols-3 border-b border-stroke dark:border-strokedark sm:grid-cols-5'
-                        >
-                            <div className='flex items-center gap-3 p-2.5 xl:p-5'>
-                                <div className='avatar flex-shrink-0'>
-                                    <img
-                                        className='rounded-full w-10 h-10'
-                                        src={data.productImageGallery[0]}
-                                        alt='Brand'
-                                    />
-                                </div>
-                                <p className='hidden text-black dark:text-white sm:block'>
-                                    {data.title}
-                                </p>
-                            </div>
-
-                            <div className='flex items-center justify-center p-2.5 xl:p-5'>
-                                {(!!len && len > 0) && cat.map((data, index) => {
-                                    return (
-                                        <p key={index} className='text-black dark:text-white'>{data?.title}</p>
-                                    )
-                                })}
-                            </div>
-
-                            <div className='flex items-center justify-center p-2.5 xl:p-5'>
-                                <p className='text-meta-3'>{data.price} </p>
-                            </div>
-
-                            <div className='hidden items-center justify-center p-2.5 sm:flex xl:p-5'>
-                                <p className='text-meta-5'>
-                                    {data.description.substring(0, 30) + '...'}
-                                </p>
-
-                            </div>
-
-                            <div className='hidden items-center justify-center p-2.5 sm:flex xl:p-5'>
-                                <p className='text-meta-5'>{data.meta.keywords[0]}</p>
-                            </div>
-                        </div>
-                    )
-                }
-                )}
+            <div className='max-w-full overflow-x-auto'>
+                <table className='w-full table-auto'>
+                    <thead>
+                        <tr className='bg-gray-2 text-left dark:bg-meta-4'>
+                            <th className='min-w-[220px] py-4 px-4 font-medium text-black dark:text-white xl:pl-11'>
+                                Title
+                            </th>
+                            <th className='min-w-[150px] py-4 px-4 font-medium text-black dark:text-white'>
+                                MRP
+                            </th>
+                            <th className='min-w-[120px] py-4 px-4 font-medium text-black dark:text-white'>
+                                Description
+                            </th>
+                            <th className='py-4 px-4 font-medium text-black dark:text-white'>
+                                Keywords
+                            </th>
+                            <th className='py-4 px-4 font-medium text-black dark:text-white'>
+                                Actions
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {products?.reverse().map((product) => {
+                            let cat = product.category
+                            if (!!cat) var len = Object.keys(cat).length
+                            return (
+                                <tr key={product._id}>
+                                    <td className='border-b border-[#eee] py-5 px-4 pl-9 dark:border-strokedark xl:pl-11'>
+                                        <div className='flex items-center gap-2'>
+                                            <div className='avatar flex-shrink-0'>
+                                                <img
+                                                    className='rounded-full w-10 h-10'
+                                                    src={product.productImageGallery[0]}
+                                                    alt='Brand'
+                                                />
+                                            </div>
+                                            <div>
+                                                <h5 className='font-medium text-black dark:text-white'>
+                                                    {product.title}
+                                                </h5>
+                                                <p className='text-sm'>
+                                                    {' '}
+                                                    {!!len &&
+                                                        len > 0 &&
+                                                        cat.map((data, index) => {
+                                                            return (
+                                                                <p
+                                                                    key={index}
+                                                                    className='text-black dark:text-white'
+                                                                >
+                                                                    {data?.title}
+                                                                </p>
+                                                            )
+                                                        })}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td className='border-b border-[#eee] py-5 px-4 dark:border-strokedark'>
+                                        <p className='text-black dark:text-white'>
+                                            Rs {product.price}
+                                        </p>
+                                    </td>
+                                    <td className='border-b border-[#eee] py-5 px-4 dark:border-strokedark'>
+                                        <p className='text-black dark:text-white'>
+                                            {product.description.substring(0, 30) + '...'}
+                                        </p>
+                                    </td>
+                                    <td className='border-b border-[#eee] py-5 px-4 dark:border-strokedark'>
+                                        <p
+                                            className={`inline-flex rounded-full bg-opacity-10 py-1 px-3 text-sm font-medium `}
+                                        >
+                                            {product.meta.keywords[0]}
+                                        </p>
+                                    </td>
+                                    <td className='border-b border-[#eee] py-5 px-4 dark:border-strokedark'>
+                                        <ActionsButton id={product._id} />
+                                    </td>
+                                </tr>
+                            )
+                        })}
+                    </tbody>
+                </table>
             </div>
         </div>
     )
