@@ -53,7 +53,7 @@ const ProductTable = ({ products }) => {
                                                 <h5 className='font-medium text-black dark:text-white'>
                                                     {product.title}
                                                 </h5>
-                                                <p className='text-sm'>
+                                                <div className='text-sm'>
                                                     {' '}
                                                     {!!len &&
                                                         len > 0 &&
@@ -67,7 +67,7 @@ const ProductTable = ({ products }) => {
                                                                 </p>
                                                             )
                                                         })}
-                                                </p>
+                                                </div>
                                             </div>
                                         </div>
                                     </td>

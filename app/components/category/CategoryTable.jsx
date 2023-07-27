@@ -1,5 +1,7 @@
 'use client'
 
+import ActionsButton from "./ActionButtons"
+
 
 
 const CategoryTable = ({ category }) => {
@@ -20,15 +22,11 @@ const CategoryTable = ({ category }) => {
 
                     <div className='p-2.5 text-center xl:p-5'>
                         <h5 className='text-sm font-medium uppercase xsm:text-base'>
-                            Banner Image
-                        </h5>
-                    </div>
-
-                    <div className='hidden p-2.5 text-center sm:block xl:p-5'>
-                        <h5 className='text-sm font-medium uppercase xsm:text-base'>
                             Keywords
                         </h5>
                     </div>
+
+
                     <div className='p-2.5 text-center xl:p-5'>
                         <h5 className='text-sm font-medium uppercase xsm:text-base'>
                             Description
@@ -37,6 +35,11 @@ const CategoryTable = ({ category }) => {
                     <div className='p-2.5 text-center xl:p-5'>
                         <h5 className='text-sm font-medium uppercase xsm:text-base'>
                             Parent Category
+                        </h5>
+                    </div>
+                    <div className='hidden p-2.5 text-center sm:block xl:p-5'>
+                        <h5 className='text-sm font-medium uppercase xsm:text-base'>
+                            Actions
                         </h5>
                     </div>
                 </div>
@@ -59,23 +62,12 @@ const CategoryTable = ({ category }) => {
                                     {data.title}
                                 </p>
                             </div>
-
-                            <div className='flex items-center gap-3 p-2.5 xl:p-5'>
-                                <div className='avatar flex-shrink-0'>
-                                    <img
-                                        className=' w-full h-10'
-                                        src={data.thumbImage}
-                                        alt='thumb'
-                                    />
-                                </div>
-                                <p className='hidden text-black dark:text-white sm:block'>
+                            <div className='hidden items-center justify-center p-2.5 sm:flex xl:p-5'>
+                                <p className='text-meta-5'>
+                                    {data.meta.keywords}
                                 </p>
                             </div>
 
-
-                            <div className='flex items-center justify-center p-2.5 xl:p-5'>
-                                <p className='text-meta-3'>{data.meta.keywords} </p>
-                            </div>
 
                             <div className='hidden items-center justify-center p-2.5 sm:flex xl:p-5'>
                                 <p className='text-meta-5'>
@@ -83,11 +75,13 @@ const CategoryTable = ({ category }) => {
                                 </p>
                             </div>
 
-                            {(!!data?.parentCategory) &&
-                                <div className='flex items-center justify-center p-2.5 xl:p-5'>
-                                    <p className='text-meta-3'>{data.parentCategory.title} </p>
-                                </div>
-                            }
+                            <div className='flex items-center justify-center p-2.5 xl:p-5'>
+                                {(!!data?.parentCategory) && <p className='text-meta-3'>{data.parentCategory.title} </p>}
+                            </div>
+
+                            <div className='hidden items-center justify-center p-2.5 sm:flex xl:p-5'>
+                                <ActionsButton id={data._id} />
+                            </div>
                         </div>
                     )
                 }
