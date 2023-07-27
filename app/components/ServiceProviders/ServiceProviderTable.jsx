@@ -1,5 +1,7 @@
 'use client'
 
+import ActionsButton from "./ActionButtons"
+
 
 
 const ServiceProviderTable = ({ providers }) => {
@@ -83,7 +85,7 @@ const ServiceProviderTable = ({ providers }) => {
 
                             <div className='flex items-center justify-center p-2.5 xl:p-5'>
                                 <div className='flex gap-2'>
-                                    D
+                                    <ActionsButton id={data._id} />
                                 </div>
                             </div>
                         </div>

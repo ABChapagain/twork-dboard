@@ -14,10 +14,12 @@ const ActionsButton = ({ id }) => {
                 // const response = await deleteProduct(id)
                 deleteProduct(id)
                 // toast.success(response.message)
+                router.push('/inventory/services')
+                router.refresh()
             } catch (error) {
                 toast.error(error.message)
             } finally {
-                router.push('/inventory/products')
+                router.push('/inventory/services')
                 router.refresh()
             }
         } else {
@@ -26,13 +28,12 @@ const ActionsButton = ({ id }) => {
     }
 
     function deleteProduct(id) {
-        fetch("/api/products/deleteProduct", {
+        fetch("/api/services/deleteService", {
             method: "DELETE",
             body: JSON.stringify({ id: id }),
         })
             .then((res) => res.json())
             .then((json) => {
-                console.log(json)
                 if (json.error) {
                     toast.error(json.message)
                 } else {

@@ -1,5 +1,7 @@
 'use client'
 
+import ActionsButton from "./ActionButtons"
+
 
 
 const ServiceTable = ({ service }) => {
@@ -36,7 +38,7 @@ const ServiceTable = ({ service }) => {
                     </div>
                     <div className='p-2.5 text-center xl:p-5'>
                         <h5 className='text-sm font-medium uppercase xsm:text-base'>
-                            Slug
+                            Actions
                         </h5>
                     </div>
                 </div>
@@ -92,7 +94,7 @@ const ServiceTable = ({ service }) => {
 
 
                             <div className='flex items-center justify-center p-2.5 xl:p-5'>
-                                <p className='text-meta-3'>{data.slug} </p>
+                                <ActionsButton id={data._id} />
                             </div>
                         </div>
                     )
