@@ -9,8 +9,6 @@ export async function DELETE(request) {
                 'Content-Type': 'application/json',
             },
             method: 'DELETE',
-            cache: 'no-store',
-            revalidate: 10
         })
         const data = await res.json()
         return NextResponse.json({ message: "Done", status: 200, data })

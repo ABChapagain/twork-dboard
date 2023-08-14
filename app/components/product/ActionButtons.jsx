@@ -37,6 +37,7 @@ const ActionsButton = ({ id }) => {
                     toast.error(json.message)
                 } else {
                     toast.success(json.message)
+                    router.refresh()
                 }
 
             })
