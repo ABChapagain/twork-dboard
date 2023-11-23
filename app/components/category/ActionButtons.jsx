@@ -25,8 +25,8 @@ const ActionsButton = ({ id }) => {
         }
     }
 
-    function deleteProduct(id) {
-        fetch("/api/products/deleteCategories", {
+    async function deleteProduct(id) {
+        await fetch("/api/products/deleteCategories", {
             method: "DELETE",
             body: JSON.stringify({ id: id }),
         })

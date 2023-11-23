@@ -5,16 +5,23 @@ import React, { use } from 'react'
 
 async function getData() {
     let url = process.env.NEXT_PUBLIC_API_URL
-    return await (await fetch(url + '/api/products/physical', {
-        cache: 'no-store',
-    })).json()
+    // return await (await fetch(url + '/api/products/physical', {
+    //     cache: 'no-store',
+    // })).json()
+    const data = await fetch(url + 'api/products/physical');
+    let result = await data.json();
+    return result;
 }
 
 async function getCategory() {
     let url = process.env.NEXT_PUBLIC_API_URL
-    return await (await fetch(url + 'api/categories', {
-        cache: 'no-store',
-    })).json()
+    // return await (await fetch(url + 'api/categories', {
+    //     cache: 'no-store',
+    // })).json()
+    const data = await fetch(url + 'api/categories');
+    let result = await data.json();
+    console.log(result)
+    return result;
 }
 
 export const metadata = {
