@@ -38,7 +38,7 @@ export async function POST(request) {
 
 
     const createProduct = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/api/products/physical`,
+      `${process.env.NEXT_PUBLIC_API_URL}api/products/physical`,
       {
         method: 'POST',
         headers: {
@@ -49,6 +49,12 @@ export async function POST(request) {
     )
 
     const product = await createProduct.json()
+
+    console.log(product)
+
+    if (product.error) {
+      return NextResponse.json(product, { status: 400 })
+    }
 
     return NextResponse.json(product, { status: 200 })
   } catch (error) {

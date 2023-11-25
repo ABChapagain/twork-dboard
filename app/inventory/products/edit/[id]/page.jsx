@@ -4,8 +4,10 @@ import React, { use } from 'react'
 
 async function getData(id) {
     let url = process.env.NEXT_PUBLIC_API_URL
-    return await (await fetch(url + '/api/products/physical/' + id, {
+
+    return await (await fetch(url + 'api/products/physical/' + id, {
         cache: 'no-store',
+        mode: 'no-cors'
     })).json()
 }
 

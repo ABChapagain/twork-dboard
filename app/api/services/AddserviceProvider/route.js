@@ -29,7 +29,7 @@ export async function POST(request) {
             email: email,
         }
         const createCategories = await fetch(
-            `${process.env.NEXT_PUBLIC_API_URL}/api/serviceproviders`,
+            `${process.env.NEXT_PUBLIC_API_URL}api/serviceproviders`,
             {
                 method: 'POST',
                 headers: {

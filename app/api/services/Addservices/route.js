@@ -24,7 +24,7 @@ export async function POST(request) {
             thumbImage: thumbImage,
         }
         const createCategories = await fetch(
-            `${process.env.NEXT_PUBLIC_API_URL}/api/products/service`,
+            `${process.env.NEXT_PUBLIC_API_URL}api/products/service`,
             {
                 method: 'POST',
                 headers: {

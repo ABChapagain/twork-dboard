@@ -38,7 +38,7 @@ export async function PUT(request) {
 
 
     const updatePRoduct = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/api/products/physical/${postID}`,
+      `${process.env.NEXT_PUBLIC_API_URL}api/products/physical/${postID}`,
       {
         method: 'PUT',
         headers: {

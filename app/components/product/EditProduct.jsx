@@ -6,25 +6,26 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 function EditProduct({ products }) {
+    console.log(products)
     var router = useRouter()
     let [product, setProduct] = useState({
-        title: products.title,
-        price: products.price,
-        mrp: products.mrp,
-        description: products.description,
-        keywords: products.meta.keywords,
-        costPrice: products.costPrice,
-        category: products.category,
-        thumbImage: products.variant.productImage
+        title: products?.title,
+        price: products?.price,
+        mrp: products?.mrp,
+        description: products?.description,
+        keywords: products?.meta?.keywords,
+        costPrice: products?.costPrice,
+        category: products?.category,
+        thumbImage: products?.variant?.productImage
     })
     var [category, setCategory] = useState([])
 
 
     useEffect(() => {
         router.refresh()
-        setCategory(products.category)
-        setProductImage(products.variant.productImage)
-        setProductImages(products.productImageGallery)
+        setCategory(products?.category)
+        setProductImage(products?.variant?.productImage)
+        setProductImages(products?.productImageGallery)
 
 
     }, [])
@@ -66,7 +67,7 @@ function EditProduct({ products }) {
         var myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
         var data = {
-            product, productImages, postId: products._id
+            product, productImages, postId: products?._id
         }
 
         var raw = JSON.stringify(data);
@@ -81,7 +82,6 @@ function EditProduct({ products }) {
         fetch("/api/products/EditPhysical", requestOptions)
             .then(response => response.json())
             .then(result => {
-                console.log(result)
                 router.push("/inventory/products")
                 clearText()
                 setLoading(false)

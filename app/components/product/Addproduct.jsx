@@ -28,7 +28,8 @@ function Addproduct({ categories }) {
     }
     function getsubCategory() {
         fetch("/api/products/getsubCategory", {
-            cache: "no-store"
+            cache: "no-store",
+            mode: 'no-cors'
         })
             .then(res => res.json())
             .then(data => {
@@ -76,8 +77,10 @@ function Addproduct({ categories }) {
         var myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
         var data = {
-            product, productImages
+            product, productImages: productImagesUrl
         }
+
+
 
         var raw = JSON.stringify(data);
 
@@ -95,32 +98,86 @@ function Addproduct({ categories }) {
                 clearText()
                 notify()
                 setShowProduct(false)
-
+                console.log(result)
             })
             .catch(error => {
                 router.refresh()
                 error()
             });
-
-
-
     }
     var [productImage, setProductImage] = useState("")
     var [productImages, setProductImages] = useState([])
 
 
+    const api = '9ecf1bfefc549e8dcfa7689d1892aedb'
+    const url = 'https://api.imgbb.com/1/upload?key=' + api;
+
+
     function productImagechange(e) {
-        setProductImage(e.target.value)
-        addData(e)
+        // setProductImage(e.target.value)
+        // addData(e)
+
+        e.preventDefault()
+        const image = e.target.files[0]
+
+        let imgUrl = ""
+        const reader = new FileReader();
+        reader.readAsDataURL(image);
+        reader.onloadend = () => {
+            setProductImage(reader.result)
+        };
+
+        const formData = new FormData();
+        formData.append('image', image);
+
+        fetch(url, {
+            method: 'POST',
+            body: formData
+        })
+            .then((response) => response.json())
+            .then((result) => {
+                imgUrl = result.data.url
+                setProduct({
+                    ...product,
+                    thumbImage: imgUrl
+                })
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+
 
     }
+
+    const [productImagesUrl, setProductImagesUrl] = useState([])
+
     function productImageschange(e) {
         e.preventDefault()
-        var productImagex = document.getElementById("productImage")
-        let imageValue = productImagex.value
+        const imageFIle = document.getElementById('productImage').files[0]
+        let imgUrl = []
+        const reader = new FileReader();
+        reader.readAsDataURL(imageFIle);
+        reader.onloadend = () => {
+            setProductImages([...productImages, reader.result])
+        };
+        const formData = new FormData();
+        formData.append('image', imageFIle);
 
-        setProductImages([...productImages, imageValue])
-        productImagex.value = ""
+        fetch(url, {
+            method: 'POST',
+            body: formData
+        })
+            .then((response) => response.json())
+            .then((result) => {
+                console.log('Success:', result);
+                setProductImagesUrl([...productImagesUrl, result.data.url])
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+
+        setProductImages([...productImages, imgUrl])
+
         // addData(e)
     }
 
@@ -271,11 +328,15 @@ function Addproduct({ categories }) {
                         </label>
                         <input
                             onChange={(e) => productImagechange(e)}
-                            type="text"
+                            type="file"
                             name='thumbImage'
                             placeholder="Thumbnail Image"
+                            accept="image/*"
                             className="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                         />
+                        <button onClick={(e) => uploadToIMGBB(e)}>
+                            Upload
+                        </button>
                     </div>
                     {(!!productImage) && <img className='mb-4.5 h-32' src={productImage} alt="" />}
 
@@ -285,7 +346,7 @@ function Addproduct({ categories }) {
                         </label>
                         <div className="flex gap-3 mb-4.5">
                             <input
-                                type="text"
+                                type="file"
                                 id='productImage'
                                 name='productImages'
                                 placeholder="Product Image"

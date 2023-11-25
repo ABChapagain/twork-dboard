@@ -45,7 +45,7 @@ export async function POST(request) {
 
 
         const createCategories = await fetch(
-            `${process.env.NEXT_PUBLIC_API_URL}/api/categories`,
+            `${process.env.NEXT_PUBLIC_API_URL}api/categories`,
             {
                 method: 'POST',
                 headers: {
